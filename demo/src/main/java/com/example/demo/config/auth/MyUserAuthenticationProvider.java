@@ -12,13 +12,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 
-@Component
+//@Component
 public class MyUserAuthenticationProvider implements AuthenticationProvider {
 
     @Autowired
     private MyUserDetailService myUserDetailService;
-    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    @Autowired
+    private PasswordEncoder passwordEncoder ;
 
+    //执行认证，返回认证结果
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String userName = authentication.getName();
@@ -31,8 +33,9 @@ public class MyUserAuthenticationProvider implements AuthenticationProvider {
         }
     }
 
+    //判断是否支持当前的认证对象
     @Override
     public boolean supports(Class<?> authentication) {
-        return authentication.equals(UsernamePasswordAuthenticationToken.class);
+        return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication);
     }
 }

@@ -4,16 +4,16 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 import org.springframework.context.annotation.Primary;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.PrimaryKeyJoinColumns;
+import javax.persistence.*;
 
 @Entity
 @Data
-@Accessors
 public class Authorities {
     @Id
-    private String username;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private String authority;
+    private String name;
+
+    private Long userId;
 }

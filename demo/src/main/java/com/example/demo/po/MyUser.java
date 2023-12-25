@@ -1,11 +1,10 @@
 package com.example.demo.po;
 
+import com.example.demo.common.PasswordEncoderType;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -19,4 +18,10 @@ public class MyUser {
     private String tenantCode;
     private String enabled;
     private String delFlag;
+
+    @Enumerated(EnumType.STRING)
+    private PasswordEncoderType passwordEncoderType;
+
+//    @OneToMany(mappedBy = "my_user", fetch = FetchType.EAGER)
+//    private List<Authorities> authorities;
 }
