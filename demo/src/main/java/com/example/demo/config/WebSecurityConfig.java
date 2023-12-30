@@ -1,5 +1,6 @@
 package com.example.demo.config;
 
+import com.example.demo.config.auth.MyUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,6 +16,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
@@ -48,7 +50,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      * 认证，认证的是请求本身，而具体的认证过程由组件来负责AuthenticationProvider
      * AuthenticationProvider流程：先去UserDetailsService加载用户，获取到了就去判断密码
      */
-    private Authentication authentication;
+//    private Authentication authentication;
+//    private AuthenticationProvider authenticationProvider;
+
+    @Autowired
+    private UserDetailsService myUserDetailService;
+
+    @Autowired
     private AuthenticationProvider authenticationProvider;
 
 
@@ -60,22 +68,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
-    @Override
-    @Bean
-    public UserDetailsService userDetailsServiceBean() throws Exception {
-        return super.userDetailsServiceBean();
-    }
+//    @Override
+//    @Bean
+//    public UserDetailsService userDetailsServiceBean() throws Exception {
+//        return new MyUserDetailService();
+//    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder builder) throws Exception {
-        builder.inMemoryAuthentication()
-                .withUser("spring_user")
-                .password("{noop}password1")
-                .roles("USER")
-                .and()
-                .withUser("spring_admin")
-                .password("{noop}password2")
-                .roles("USER", "ADMIN");
+        builder.authenticationProvider(authenticationProvider).userDetailsService(myUserDetailService).passwordEncoder(new MyPassWordEncoder());
+//        builder.inMemoryAuthentication()
+//                .withUser("spring_user")
+//                .password("{noop}password1")
+//                .roles("USER")
+//                .and()
+//                .withUser("spring_admin")
+//                .password("{noop}password2")
+//                .roles("USER", "ADMIN");
     }
 
 //    @Override

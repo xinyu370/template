@@ -1,24 +1,21 @@
 package com.example.demo.config.auth;
 
-import com.example.demo.po.Authorities;
-import com.example.demo.po.MyUser;
-import com.example.demo.repository.AuthoritiesRepository;
-import com.example.demo.repository.MyUserRepository;
+import com.example.demo.pojo.Authorities;
+import com.example.demo.pojo.MyUser;
+import com.example.demo.pojo.repository.AuthoritiesRepository;
+import com.example.demo.pojo.repository.MyUserRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.function.Supplier;
 
-//@Component
+@Component
 public class MyUserDetailService implements UserDetailsService {
     @Resource
     private MyUserRepository myUserRepository;

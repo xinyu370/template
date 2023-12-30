@@ -1,8 +1,7 @@
-package com.example.demo.po;
+package com.example.demo.pojo;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
-import org.springframework.context.annotation.Primary;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

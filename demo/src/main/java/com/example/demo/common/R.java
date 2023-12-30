@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.common;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;

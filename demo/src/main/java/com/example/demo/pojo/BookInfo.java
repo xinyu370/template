@@ -1,4 +1,4 @@
-package com.example.demo.po;
+package com.example.demo.pojo;
 
 import lombok.Data;
 
@@ -9,17 +9,20 @@ import javax.persistence.Id;
 
 @Entity
 @Data
-public class UserEntity {
-
+public class BookInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String userName;
+    private String bookNames;
 
-    private String remark;
+    private String author;
 
-    private String dateTime;
+    private String  status;
 
-    private String classfyId;
+    private String bookDir;
+
+    private Integer chapters;
+
+    private Long totalWord;
 }

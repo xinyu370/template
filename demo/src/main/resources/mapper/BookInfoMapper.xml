@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.pojo.mapper.BookInfosMapper">
+
+    <select id="getBookInfos" resultType="com.example.demo.common.resp.BookRespVo">
+        select
+               id,
+            book_names as bookNames,
+               author,
+               chapters
+        from
+            book_info
+    </select>
+    <select id="getTotalReadInfos" resultType="com.example.demo.common.resp.UserReadCountResp">
+        SELECT
+            mu.username as userName,
+            count(bi.id) as totalWriting,
+            readInfo.readTotal AS totalLook,
+            sum(bi.total_word) as totalWriteWord
+        FROM
+            my_user mu
+                LEFT JOIN book_info bi ON bi.author = mu.username
+                LEFT JOIN ( SELECT user_name,
+                                   count( user_name ) readTotal
+                            FROM read_book_info GROUP BY user_name ) readInfo ON readinfo.readTotal = mu.username
+        GROUP BY
+            mu.username;
+    </select>
+    <select id="getTotalCompelet" resultType="com.example.demo.common.resp.UserReadCountResp">
+        SELECT
+            bi.author as userName,
+            count(*) as totalComplete
+        FROM
+            book_info bi
+        <where>
+            <if test="vo!=null and vo.size()>0">
+                bi.author in
+                <foreach collection="vo" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="status!=null and status!=''">
+                and bi.`status` =#{status}
+            </if>
+        </where>
+        GROUP BY
+            bi.author
+    </select>
+    <select id="getTotalReadChapter" resultType="com.example.demo.common.resp.UserReadCountResp">
+        select user_name,sum(last_chapter) as totalLookChapter from read_book_info
+        <where>
+            <if test="vo!=null and vo.size()>0">
+                user_name in
+                <foreach collection="vo" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        GROUP BY user_name
+    </select>
+</mapper>

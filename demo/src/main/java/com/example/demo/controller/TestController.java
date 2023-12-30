@@ -1,7 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.po.UserEntity;
-import com.example.demo.repository.UserRepository;
+import com.example.demo.common.R;
+import com.example.demo.pojo.UserEntity;
+import com.example.demo.pojo.repository.UserRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@RestController
+//@RestController
 @Api(tags = "用户接口")
 public class TestController {
 

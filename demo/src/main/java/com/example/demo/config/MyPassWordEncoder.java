@@ -3,7 +3,7 @@ package com.example.demo.config;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 public class MyPassWordEncoder implements PasswordEncoder {
     /**
      * 测试用，进行明文匹配
