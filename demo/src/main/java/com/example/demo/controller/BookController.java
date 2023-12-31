@@ -48,7 +48,7 @@ public class BookController {
     /**
      * 更新状态(断更，完结)
      */
-    @PostMapping("/updateStatus}")
+    @PostMapping("/updateStatus")
     public R updateStatus(@RequestParam("bookId") long bookId,@RequestParam("status") String status){
         bookService.updateBookStatus(bookId,status);
         return R.ok();

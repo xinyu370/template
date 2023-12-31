@@ -28,6 +28,12 @@ public class UserController {
     private UserService userService;
 
 
+    @PostMapping("/updateUser")
+    public R updateUser(@RequestBody MyUser myUser){
+        userService.updateUser(myUser);
+        return R.ok();
+    }
+
     @PostMapping("/addUser")
     public R addUser(@RequestBody MyUser myUser) throws Exception {
         userService.addUser(myUser);

@@ -42,6 +42,13 @@ public class UserServiceImpl implements UserService {
         myUserRepository.save(myUser);
     }
 
+    public void updateUser(MyUser user){
+        if(user.getId() == null){
+            throw new BusinessException("更新用户，id不能为空");
+        }
+        myUserRepository.save(user);
+    }
+
     @Override
     public PageResult<UserRespVo> getAllUserList(UserReqVo reqVo) throws Exception {
         Page<UserRespVo> page = PageUtil.buildPage(reqVo.getPageNum(), reqVo.getPageSize());

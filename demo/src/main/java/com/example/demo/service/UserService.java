@@ -11,6 +11,7 @@ import com.example.demo.pojo.MyUser;
 import java.util.List;
 
 public interface UserService {
+    void updateUser(MyUser user);
 
     void addUser(MyUser myUser) throws Exception;
 
