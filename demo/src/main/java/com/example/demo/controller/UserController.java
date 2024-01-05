@@ -10,6 +10,7 @@ import com.example.demo.pojo.MyUser;
 import com.example.demo.pojo.repository.MyUserRepository;
 import com.example.demo.service.UserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,18 +30,21 @@ public class UserController {
 
 
     @PostMapping("/updateUser")
+    @ApiOperation(value = "更新用户")
     public R updateUser(@RequestBody MyUser myUser){
         userService.updateUser(myUser);
         return R.ok();
     }
 
     @PostMapping("/addUser")
+    @ApiOperation(value = "add用户")
     public R addUser(@RequestBody MyUser myUser) throws Exception {
         userService.addUser(myUser);
         return R.ok();
     }
 
     @PostMapping("/getUserList")
+    @ApiOperation(value = "query用户")
     public R<PageResult<UserRespVo>> getUserList(@RequestBody UserReqVo reqVo) throws Exception {
         return R.ok(userService.getAllUserList(reqVo));
     }
@@ -52,6 +56,7 @@ public class UserController {
     }
 
     @DeleteMapping("/deleteUser")
+    @ApiOperation(value = "delete用户")
     public R deleteUser(@RequestParam("userId") Long userId){
         userService.deleteUser(userId);
         return R.ok();

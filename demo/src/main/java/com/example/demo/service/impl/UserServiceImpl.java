@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
         if(myUserRepository.findByUsername(myUser.getUsername()).isPresent()){
             throw new BusinessException("当前用户名已被使用:"+myUser.getUsername());
         }
-        myUser.setEnabled("0");
+        myUser.setEnabled("1");
         myUser.setPassword(myPassWordEncoder.encode(myUser.getPassword()));
         myUserRepository.save(myUser);
     }
