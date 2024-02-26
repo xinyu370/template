@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.pojo.mapper.ExtMapper">
+    <select id="getExtPageList" resultType="com.example.demo.common.resp.ExtRespVo">
+        select * from ext_pojo
+        <where>
+            <if test="vo.tag!=null and vo.tag!=''">
+                tag=#{vo.tag}
+            </if>
+            <if test="vo.id!=null">
+               and  id=#{vo.id}
+            </if>
+            <if test="vo.ext1!=null and vo.ext1!=''">
+                and ext1=#{vo.ext1}
+            </if>
+            <if test="vo.ext2!=null and vo.ext2!=''">
+                and ext2=#{vo.ext2}
+            </if>
+            <if test="vo.ext3!=null and vo.ext3!=''">
+                and ext3=#{vo.ext3}
+            </if>
+            <if test="vo.ext4!=null and vo.ext4!=''">
+                and ext4=#{vo.ext4}
+            </if>
+            <if test="vo.ext5!=null and vo.ext5!=''">
+                and ext5=#{vo.ext5}
+            </if>
+            <if test="vo.ext6!=null and vo.ext6!=''">
+                and ext6=#{vo.ext6}
+            </if>
+            <if test="vo.ext7!=null and vo.ext7!=''">
+                and ext7=#{vo.ext7}
+            </if>
+            <if test="vo.ext8!=null and vo.ext8!=''">
+                and ext8=#{vo.ext8}
+            </if>
+            <if test="vo.ext9!=null and vo.ext9!=''">
+                and ext9=#{vo.ext9}
+            </if>
+            <if test="vo.ext10!=null and vo.ext10!=''">
+                and ext10=#{vo.ext10}
+            </if>
+        </where>
+    </select>
+</mapper>

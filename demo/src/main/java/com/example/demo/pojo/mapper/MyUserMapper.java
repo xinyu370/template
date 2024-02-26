@@ -11,6 +11,6 @@ import java.util.List;
 
 public interface MyUserMapper extends BaseMapper<MyUser> {
 
-    public List<UserRespVo> getUserList(Page<UserRespVo> page, @Param("vo") UserReqVo vo);
+    public List<UserRespVo> getUserList(@Param("page") Page<UserRespVo> page, @Param("vo") UserReqVo vo);
 
 }
